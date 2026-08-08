@@ -1,0 +1,123 @@
+doctype html
+html
+  head
+    meta(charset="utf-8")
+    title Voting Results
+    style.
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .container {
+        background: white;
+        padding: 50px;
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        text-align: center;
+        max-width: 600px;
+        width: 90%;
+      }
+      h1 {
+        color: #333;
+        margin-bottom: 10px;
+        font-size: 2.2em;
+      }
+      .subtitle {
+        color: #888;
+        margin-bottom: 30px;
+        font-size: 1.1em;
+      }
+      .stats {
+        display: flex;
+        justify-content: space-around;
+        margin: 30px 0;
+        gap: 20px;
+      }
+      .stat-box {
+        flex: 1;
+        padding: 25px;
+        border-radius: 15px;
+        color: white;
+      }
+      .stat-a {
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      }
+      .stat-b {
+        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+      }
+      .stat-box h2 {
+        font-size: 2.5em;
+        margin-bottom: 5px;
+      }
+      .stat-box p {
+        font-size: 1.2em;
+        opacity: 0.9;
+      }
+      .bar-container {
+        width: 100%;
+        height: 40px;
+        background: #eee;
+        border-radius: 20px;
+        overflow: hidden;
+        margin: 30px 0;
+        display: flex;
+      }
+      .bar-a {
+        height: 100%;
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        transition: width 0.5s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: bold;
+        font-size: 0.9em;
+      }
+      .bar-b {
+        height: 100%;
+        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        transition: width 0.5s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: bold;
+        font-size: 0.9em;
+      }
+      .total {
+        color: #888;
+        font-size: 1em;
+        margin-top: 10px;
+      }
+      .refresh-note {
+        color: #aaa;
+        font-size: 0.85em;
+        margin-top: 20px;
+      }
+
+  body
+    .container
+      h1 📊 Live Results
+      p.subtitle Real-time voting results
+
+      .stats
+        .stat-box.stat-a
+          h2= votesA
+          p= optionA
+        .stat-box.stat-b
+          h2= votesB
+          p= optionB
+
+      .bar-container
+        if percentA > 0
+          .bar-a(style=`width: ${percentA}%`)= percentA + '%'
+        if percentB > 0
+          .bar-b(style=`width: ${percentB}%`)= percentB + '%'
+
+      p.total Total votes cast: <strong>#{total}</strong>
+      p.refresh-note Refresh the page to see updated results
